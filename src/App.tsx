@@ -2,8 +2,8 @@ import React, { lazy, Suspense } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-const Home = lazy(() => import("./views/Home"));
-const ReactHookForm = lazy(() => import("./views/react-hook-form/RHF"));
+const Home = lazy(() => import("@/views/Home"));
+const ReactHookForm = lazy(() => import("@/views/react-hook-form/Rhf"));
 
 function App() {
   return (

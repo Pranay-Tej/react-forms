@@ -1,12 +1,17 @@
+import { REQUIRED_FIELD_MESSAGE } from "@/constants/validations.constants";
 import React from "react";
 import { useForm } from "react-hook-form";
 
-const RHFCustomValidation = () => {
+interface Email {
+  email: string;
+}
+
+const RhfCustomValidation = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<Email>();
 
   return (
     <form
@@ -18,24 +23,20 @@ const RHFCustomValidation = () => {
       <label htmlFor="email">Email</label>
       <input
         type="email"
-        name="email"
         {...register("email", {
-          required: true,
+          required: { value: true, message: REQUIRED_FIELD_MESSAGE },
           validate: {
-            reactDomain: (val) => RegExp(/^[^@ \t\r\n]+@react.com$/).test(val),
+            reactDomain: (val) =>
+              RegExp(/^[^@ \t\r\n]+@react.com$/).test(val) ||
+              "Should end with @react.com",
           },
         })}
       />
-      {errors?.email?.type === "required" && (
-        <span>This field is required</span>
-      )}
-      {errors?.email?.type === "reactDomain" && (
-        <span>Enter a valid email ending with @react.com</span>
-      )}
+      {errors?.email && <span>{errors.email?.message}</span>}
 
       <input type="submit" />
     </form>
   );
 };
 
-export default RHFCustomValidation;
+export default RhfCustomValidation;

@@ -1,13 +1,25 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import {
+  MAX_LENGTH_MESSAGE,
+  MIN_LENGTH_MESSAGE,
+  REQUIRED_FIELD_MESSAGE,
+} from "@/constants/validations.constants";
 
-const RHFBasicForm = () => {
+interface User {
+  name: string;
+  age: number;
+  email: string;
+  joiningdate: string;
+}
+
+const RhfBasicForm = () => {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm<User>();
 
   // watch input value by passing the name of it
   // console.log(watch("name"));
@@ -24,25 +36,19 @@ const RHFBasicForm = () => {
       <label htmlFor="name">Name</label>
       <input
         type="text"
-        name="name"
         {...register("name", {
-          required: true,
-          minLength: 3,
+          required: { value: true, message: REQUIRED_FIELD_MESSAGE },
+          minLength: { value: 3, message: MIN_LENGTH_MESSAGE(3) },
           // custom message
-          maxLength: { value: 6, message: `Maximum 6 characters allowed` },
+          maxLength: { value: 6, message: MAX_LENGTH_MESSAGE(6) },
         })}
       />
-      {errors?.name?.type === "required" && <span>This field is required</span>}
-      {errors?.name?.type === "minLength" && (
-        <span>Enter at least 3 characters</span>
-      )}
-      {errors?.name?.type === "maxLength" && <span>{errors.name.message}</span>}
+      {errors?.name && <span>{errors.name?.message}</span>}
       <br />
 
       <label htmlFor="age">age</label>
       <input
         type="number"
-        name="age"
         {...register("age", {
           min: { value: 10, message: "You should be at least 10 years old" },
           max: { value: 200, message: "🤨" },
@@ -50,41 +56,36 @@ const RHFBasicForm = () => {
           valueAsNumber: true,
         })}
       />
-      {errors?.age?.type === "min" && <span>{errors.age.message}</span>}
-      {errors?.age?.type === "max" && <span>{errors.age.message}</span>}
+      {errors?.age && <span>{errors.age?.message}</span>}
       <br />
 
       <label htmlFor="email">Email</label>
       <input
         type="email"
-        name="email"
         {...register("email", {
-          pattern: /[^@ \t\r\n]+@[^@ \t\r\n]+.[^@ \t\r\n]+/,
-          required: true,
+          pattern: {
+            value: /[^@ \t\r\n]+@[^@ \t\r\n]+.[^@ \t\r\n]+/,
+            message: "Invalid email",
+          },
+          required: { value: true, message: REQUIRED_FIELD_MESSAGE },
         })}
       />
-      {errors?.email?.type === "required" && (
-        <span>This field is required</span>
-      )}
-      {errors?.email?.type === "pattern" && <span>Enter a valid email</span>}
+      {errors?.email && <span>{errors.email?.message}</span>}
       <br />
 
       <label htmlFor="joiningdate">Joining Date</label>
       <input
         type="date"
-        name="joiningdate"
         {...register("joiningdate", {
-          required: true,
+          required: { value: true, message: REQUIRED_FIELD_MESSAGE },
           valueAsDate: true,
         })}
       />
-      {errors?.joiningdate?.type === "required" && (
-        <span>This field is required</span>
-      )}
+      {errors?.joiningdate && <span>{errors.joiningdate?.message}</span>}
 
       <input type="submit" />
     </form>
   );
 };
 
-export default RHFBasicForm;
+export default RhfBasicForm;

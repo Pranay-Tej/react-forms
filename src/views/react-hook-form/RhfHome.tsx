@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 
-const RHFHome = () => {
+const RhfHome = () => {
   const { path } = useRouteMatch();
 
   return (
@@ -13,9 +13,17 @@ const RHFHome = () => {
         <li>
           <Link to={`${path}/custom-validation`}>Custom Validation</Link>
         </li>
+        <li>
+          <Link to={`${path}/cross-field-validation`}>
+            Cross-field Validation
+          </Link>
+        </li>
+        <li>
+          <Link to={`${path}/dynamic-validation`}>Dynamic Validation</Link>
+        </li>
       </ul>
     </div>
   );
 };
 
-export default RHFHome;
+export default RhfHome;
