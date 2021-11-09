@@ -21,6 +21,9 @@ const RhfHome = () => {
         <li>
           <Link to={`${path}/dynamic-validation`}>Dynamic Validation</Link>
         </li>
+        <li>
+          <Link to={`${path}/mui`}>MUI</Link>
+        </li>
       </ul>
     </div>
   );

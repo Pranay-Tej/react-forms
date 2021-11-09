@@ -5,6 +5,7 @@ import { RhfCrossFieldValidation } from "./RhfCrossFieldValidation";
 import RhfCustomValidation from "./RhfCustomValidation";
 import { RhfDynamicValidation } from "./RhfDynamicValidation";
 import RhfHome from "./RhfHome";
+import RhfMui from "./RhfMui";
 
 const Rhf = () => {
   const { path } = useRouteMatch();
@@ -33,6 +34,9 @@ const Rhf = () => {
         </Route>
         <Route path={`${path}/dynamic-validation`}>
           <RhfDynamicValidation />
+        </Route>
+        <Route path={`${path}/mui`}>
+          <RhfMui />
         </Route>
       </Switch>
     </>
