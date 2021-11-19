@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const Home = lazy(() => import("@/views/Home"));
 const ReactHookForm = lazy(() => import("@/views/react-hook-form/Rhf"));
+const ControlledForms = lazy(() => import("@/views/controlled-forms/Cf"));
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
           <ul>
             <li>
               <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/controlled-forms">Controlled Forms</Link>
             </li>
             <li>
               <Link to="/react-hook-form">React Hook Form</Link>
@@ -26,6 +30,9 @@ function App() {
           <Switch>
             <Route exact path="/">
               <Home />
+            </Route>
+            <Route path="/controlled-forms">
+              <ControlledForms />
             </Route>
             <Route path="/react-hook-form">
               <ReactHookForm />
