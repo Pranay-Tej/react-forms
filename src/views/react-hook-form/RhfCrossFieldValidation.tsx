@@ -32,8 +32,9 @@ export const RhfCrossFieldValidation = () => {
         (e) => console.log(e)
       )}
     >
-      <label>Password</label>
+      <label htmlFor="password">Password</label>
       <input
+        id="password"
         type={isPasswordVisible ? "text" : "password"}
         {...register("password", {
           required: { value: true, message: REQUIRED_FIELD_MESSAGE },
@@ -45,8 +46,9 @@ export const RhfCrossFieldValidation = () => {
       />
       {errors?.password && <p>{errors.password?.message}</p>}
 
-      <label>Repeat password</label>
+      <label htmlFor="repeatPassword">Repeat password</label>
       <input
+        id="repeatPassword"
         type={isPasswordVisible ? "text" : "password"}
         {...register("password_repeat", {
           validate: {
@@ -58,7 +60,7 @@ export const RhfCrossFieldValidation = () => {
       {errors?.password_repeat && <p>{errors?.password_repeat?.message}</p>}
       <button type="button" onClick={toggleVisibility}>
         {" "}
-        {isPasswordVisible ? "😑" : "😐"}
+        {isPasswordVisible ? "🔒" : "👁"}
       </button>
       <input type="submit" />
     </form>

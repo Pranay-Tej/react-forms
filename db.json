@@ -1,0 +1,175 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "Learn Vue"
+    },
+    {
+      "id": 2,
+      "title": "Learn Vuex"
+    },
+    {
+      "id": 3,
+      "title": "Learn Vuetify"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "user": "John"
+    },
+    {
+      "id": 2,
+      "user": "Drake"
+    },
+    {
+      "id": 3,
+      "user": "Kate"
+    }
+  ],
+  "reasons": [
+    {
+      "id": 1,
+      "reason": "Project"
+    },
+    {
+      "id": 2,
+      "reason": "On Site"
+    },
+    {
+      "id": 3,
+      "reason": "Other"
+    }
+  ],
+  "laptop-brands": [
+    {
+      "id": 1,
+
+      "brand": "Apple"
+    },
+    {
+      "id": 2,
+
+      "brand": "Acer"
+    }
+  ],
+  "laptops": [
+    {
+      "id": 1,
+      "brand": "Apple",
+      "model": "M1"
+    },
+    {
+      "id": 2,
+
+      "brand": "Apple",
+      "model": "Intel"
+    },
+    {
+      "id": 3,
+
+      "brand": "Acer",
+      "model": "Predator"
+    },
+    {
+      "id": 4,
+
+      "brand": "Acer",
+      "model": "Nitro 5"
+    }
+  ],
+  "os": [
+    {
+      "id": 1,
+      "os": "Windows"
+    },
+    {
+      "id": 2,
+      "os": "Mac"
+    },
+    {
+      "id": 3,
+      "os": "Linux"
+    }
+  ],
+  "softwares": [
+    {
+      "id": 1,
+      "software": "Postman"
+    },
+    {
+      "id": 2,
+      "software": "Node JS"
+    },
+    {
+      "id": 3,
+      "software": "VS Code"
+    }
+  ],
+  "it-requests": [
+    {
+      "id": 1,
+      "user": "John",
+      "reason": "Project",
+      "brand": "Apple",
+      "model": "M1",
+      "os": "Mac",
+      "software": ["Postman", "Node JS"],
+      "otherSoftware": ["GitHub Desktop"]
+    },
+    {
+      "id": 2,
+      "user": "Drake",
+      "reason": "Other",
+      "otherReason": "Temporary",
+      "brand": "Acer",
+      "model": "Predator",
+      "os": "Windows",
+      "software": ["Postman", "Node JS", "VS Code"],
+      "otherSoftware": ["Python"]
+    },
+    {
+      "id": 3,
+      "user": "Kate",
+      "reason": "Other",
+      "otherReason": "Other",
+      "brand": "Apple",
+      "model": "M1",
+      "os": "Mac",
+      "software": ["Node JS", "VS Code"],
+      "otherSoftware": ["Git", "GitHub"]
+    }
+  ],
+  "addresses": [
+    {
+      "id": 1,
+      "name": "John",
+      "mobile": "1234567890",
+      "houseNumber": "123",
+      "street": "Main St",
+      "landmark": "Tower",
+      "city": "Anytown",
+      "zip": "90210"
+    },
+    {
+      "id": 2,
+      "name": "Jack",
+      "mobile": "1234567890",
+      "houseNumber": "123",
+      "street": "Main St",
+      "landmark": "Tower",
+      "city": "Anytown",
+      "zip": "90210"
+    },
+    {
+      "id": 3,
+      "name": "Dave",
+      "mobile": "1234567890",
+      "houseNumber": "123",
+      "street": "Main St",
+      "landmark": "Tower",
+      "city": "Anytown",
+      "zip": "90210"
+    }
+  ]
+}

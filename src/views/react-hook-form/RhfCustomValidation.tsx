@@ -22,6 +22,7 @@ const RhfCustomValidation = () => {
     >
       <label htmlFor="email">Email</label>
       <input
+        id="email"
         type="email"
         {...register("email", {
           required: { value: true, message: REQUIRED_FIELD_MESSAGE },

@@ -7,6 +7,7 @@ const Select = (props: any) => {
     <div>
       <label htmlFor={name}>{name}</label>
       <select
+        id={name}
         name={name}
         value={value}
         multiple={multiple}

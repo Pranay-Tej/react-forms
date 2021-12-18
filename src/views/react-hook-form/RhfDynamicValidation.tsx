@@ -4,8 +4,8 @@ import {
   MIN_MESSAGE,
   REQUIRED_FIELD_MESSAGE,
 } from "@/constants/validations.constants";
-import React, { useRef } from "react";
-import { useForm } from "react-hook-form";
+import React, { useEffect, useRef } from "react";
+import { useForm, useWatch } from "react-hook-form";
 
 interface DynamicValidation {
   password: string;
@@ -16,13 +16,28 @@ interface DynamicValidation {
 export const RhfDynamicValidation = () => {
   const {
     register,
-    formState: { errors },
+    formState: { errors, touchedFields },
     handleSubmit,
     watch,
-  } = useForm<DynamicValidation>();
+    trigger,
+    control,
+    reset,
+  } = useForm<DynamicValidation>({ mode: "all" });
 
   const maxLength = useRef(10);
   maxLength.current = watch("maxLength", 10);
+
+  const lengthChange = useWatch({
+    name: ["minLength", "maxLength"],
+    control: control,
+  });
+
+  useEffect(() => {
+    console.log({ lengthChange });
+    if (touchedFields?.password) {
+      trigger("password");
+    }
+  }, [lengthChange]);
 
   return (
     <form
@@ -31,8 +46,9 @@ export const RhfDynamicValidation = () => {
         (e) => console.log(e)
       )}
     >
-      <label>MinLength</label>
+      <label htmlFor="minLength">MinLength</label>
       <input
+        id="minLength"
         type="number"
         {...register("minLength", {
           required: REQUIRED_FIELD_MESSAGE,
@@ -44,9 +60,11 @@ export const RhfDynamicValidation = () => {
         })}
       />
       {errors.minLength && <p>{errors.minLength.message}</p>}
+      <br />
 
-      <label>MaxLength</label>
+      <label htmlFor="maxLength">MaxLength</label>
       <input
+        id="maxLength"
         type="number"
         {...register("maxLength", {
           required: REQUIRED_FIELD_MESSAGE,
@@ -58,9 +76,11 @@ export const RhfDynamicValidation = () => {
         })}
       />
       {errors?.maxLength && <p>{errors.maxLength?.message}</p>}
+      <br />
 
-      <label>Password</label>
+      <label htmlFor="password">Password</label>
       <input
+        id="password"
         type="text"
         {...register("password", {
           required: { value: true, message: REQUIRED_FIELD_MESSAGE },
@@ -75,6 +95,11 @@ export const RhfDynamicValidation = () => {
         })}
       />
       {errors?.password && <p>{errors.password?.message}</p>}
+      <br />
+
+      <button type="button" onClick={() => reset()}>
+        Reset
+      </button>
       <input type="submit" />
     </form>
   );

@@ -11,6 +11,7 @@ interface User {
   age: number;
   email: string;
   joiningdate: string;
+  officeLocation: string;
 }
 
 const RhfBasicForm = () => {
@@ -18,8 +19,17 @@ const RhfBasicForm = () => {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
-  } = useForm<User>();
+  } = useForm<User>({
+    defaultValues: {
+      name: "Test",
+      age: 20,
+      email: "test@test.co",
+      joiningdate: "2020-01-01",
+      officeLocation: "Bangalore",
+    },
+  });
 
   // watch input value by passing the name of it
   // console.log(watch("name"));
@@ -35,6 +45,7 @@ const RhfBasicForm = () => {
       {/* register your input into the hook by invoking the "register" function */}
       <label htmlFor="name">Name</label>
       <input
+        id="name"
         type="text"
         {...register("name", {
           required: { value: true, message: REQUIRED_FIELD_MESSAGE },
@@ -48,6 +59,7 @@ const RhfBasicForm = () => {
 
       <label htmlFor="age">age</label>
       <input
+        id="age"
         type="number"
         {...register("age", {
           min: { value: 10, message: "You should be at least 10 years old" },
@@ -61,6 +73,7 @@ const RhfBasicForm = () => {
 
       <label htmlFor="email">Email</label>
       <input
+        id="email"
         type="email"
         {...register("email", {
           pattern: {
@@ -75,6 +88,7 @@ const RhfBasicForm = () => {
 
       <label htmlFor="joiningdate">Joining Date</label>
       <input
+        id="joiningdate"
         type="date"
         {...register("joiningdate", {
           required: { value: true, message: REQUIRED_FIELD_MESSAGE },
@@ -83,6 +97,21 @@ const RhfBasicForm = () => {
       />
       {errors?.joiningdate && <span>{errors.joiningdate?.message}</span>}
 
+      <select
+        {...register("officeLocation", {
+          required: { value: true, message: REQUIRED_FIELD_MESSAGE },
+        })}
+      >
+        <option value="">Select Office</option>
+        <option value="Hyderabad">Hyderabad</option>
+        <option value="Bangalore">Bangalore</option>
+        <option value="Delhi">Delhi</option>
+      </select>
+      {errors?.officeLocation && <span>{errors.officeLocation?.message}</span>}
+
+      <button type="button" onClick={() => reset()}>
+        Reset
+      </button>
       <input type="submit" />
     </form>
   );
