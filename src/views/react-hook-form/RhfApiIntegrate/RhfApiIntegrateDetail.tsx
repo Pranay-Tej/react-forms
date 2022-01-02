@@ -7,6 +7,7 @@ import {
 } from "@/constants/validations.constants";
 import useApiCallStatus from "@/hooks/useApiCallStatus";
 import useAxiosGet from "@/hooks/useAxiosGet";
+import useUpdateEffect from "@/hooks/useUpdateEffect";
 import { BrandResponse } from "@/models/ItRequest/BrandResponse";
 import { LaptopModelResponse } from "@/models/ItRequest/LaptopModelResponse";
 import { OsResponse } from "@/models/ItRequest/OsResponse";
@@ -164,12 +165,13 @@ const RhfApiIntegrateDetail = () => {
       });
   }, [itRequestId]);
 
+  // brand and model logic
   const selectedBrand = useWatch({
     control: control,
     name: "brand",
   });
 
-  useEffect(() => {
+  useUpdateEffect(() => {
     if (selectedBrand) {
       fetchLaptopModelList(`${API_URL}/laptops?brand=${selectedBrand}`).then(
         () => {
@@ -184,6 +186,22 @@ const RhfApiIntegrateDetail = () => {
       );
     }
   }, [selectedBrand]);
+
+  // reason and otherReason logic
+  const selectedReason = useWatch({
+    control: control,
+    name: "reason",
+  });
+
+  useUpdateEffect(() => {
+    if (selectedReason === "Other" && itRequest?.reason === "Other") {
+      setValue("otherReason", itRequest?.otherReason);
+      return;
+    }
+    if (selectedReason !== "Other") {
+      setValue("otherReason", "");
+    }
+  }, [selectedReason]);
 
   const atLeastOne = () => {
     return getValues("software").length ? true : MIN_MESSAGE(1);
