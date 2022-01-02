@@ -9,5 +9,5 @@ export default function useUpdateEffect(effect: EffectCallback, deps: Dependency
     if(!isFirstRender){
       effect();
     }
-  }, [deps]);
+  }, deps);
 }
